@@ -4,13 +4,14 @@ RUN	apk update; apk add wget \
 				nginx \
 				openrc \
 				openssl \
-				php7-fpm --no-cache; \
+				php-fpm \
+				php-mysqli --no-cache; \
 			openrc; \
 			touch /run/openrc/softlevel; \
 			cd /tmp; \
 			wget https://wordpress.org/latest.tar.gz; \
 			tar xzf latest.tar.gz; \
-			mv wordpress /var/www/; \
+			mv wordpress/* /var/www/; \
 			rm latest.tar.gz; \
 			mkdir -p /run/nginx/; \
 			addgroup -S www; \
@@ -24,7 +25,7 @@ COPY	--chown=www:www ./srcs/nginx.conf /etc/nginx/
 
 COPY	./srcs/wordpress-setup.sh /
 
-COPY	--chown=www:www ./srcs/wp-config.php /var/www/wordpress/
+COPY	--chown=www:www ./srcs/wp-config.php /var/www/
 
 VOLUME	/var/www/html
 

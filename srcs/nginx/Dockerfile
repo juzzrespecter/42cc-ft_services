@@ -8,8 +8,8 @@ RUN		apk update; apk add --no-cache nginx \
 					touch /run/openrc/softlevel; \
 					addgroup -S www; \
 					adduser -S -H www -g www; \
-					chown www:www /var/www; \
-					chmod 755 /var/www; \
+					chown -R www:www /var/www; \
+					chmod -R 755 /var/www; \
 					mkdir -p /run/nginx; \
 					rm -f /etc/nginx/conf.d/default.conf; \
 					openssl req -x509 -nodes -newkey rsa:4096 -keyout /etc/ssl/private/nginx-key.key -out /etc/ssl/certs/nginx-cert.crt -days 365 \
