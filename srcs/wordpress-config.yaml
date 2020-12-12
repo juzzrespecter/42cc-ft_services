@@ -25,7 +25,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 0.2Gi
+      storage: 200Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -51,7 +51,7 @@ spec:
                             containerPort: 443
                       volumeMounts:
                           - name: www
-                            mountPath: /var/www
+                            mountPath: /var/www/html
                 volumes:
                      - name: www
                        persistentVolumeClaim: 

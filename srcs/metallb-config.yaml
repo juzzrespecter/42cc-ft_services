@@ -18,6 +18,8 @@ metadata:
 spec:
   selector:
       app: phpmyadmin
+      app: wordpress
+      app: nginx
   type: LoadBalancer
   ports:
     - name: nginx-http
