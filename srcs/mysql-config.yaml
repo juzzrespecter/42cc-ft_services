@@ -12,21 +12,6 @@ spec:
     selector:
     clusterIP: None
 ---
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-volume
-  labels:
-    hola: hola
-    type: local
-spec:
-  capacity:
-    storage: 600Mi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -56,13 +41,10 @@ spec:
                         mountPath: /var/lib/mysql
     volumeClaimTemplates:
         - metadata:
-              name: mysql-volume
+                name: mysql-volume
           spec:
-              accessModes: ["ReadWriteOnce"]
-              resources:
+                accessModes: ["ReadWriteOnce"]
+                resources:
                     requests:
-                          storage: 600Mi
-              selector:
-                  matchLabels:
-                      hola: hola
+                        storage: 2Gi
 

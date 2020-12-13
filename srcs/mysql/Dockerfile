@@ -2,17 +2,14 @@ FROM	alpine:latest
 
 COPY	./srcs/mysql-config.sql /tmp
 
-RUN		apk update; apk add mysql \
-							mysql-client \
-							openssl \
-							sudo \
+RUN		apk update; apk add mariadb \
+							mariadb-client \
+							mariadb-common \
 							openrc; \
 					openrc; \
 					touch /run/openrc/softlevel; \
-					/etc/init.d/mariadb setup; \
-					rc-service mariadb start; \
-					mysql < /tmp/mysql-config.sql;
+					/etc/init.d/mariadb setup;
 
-VOLUME	/var/lib/mysql
+COPY	./srcs/mysql-setup.sh /
 
-CMD		["sudo",  "mysqld_safe"]
+CMD		["/mysql-setup.sh"]
