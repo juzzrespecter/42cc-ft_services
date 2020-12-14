@@ -1,6 +1,9 @@
 <?php
 define('FORCE_SSL_ADMIN', true);
 
+define('WP_HOME','https://load-balancer/wordpress');
+define('WP_SITEURL','https://load-balancer/wordpress');
+
 if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
 	$_SERVER['HTTPS']='on';
 

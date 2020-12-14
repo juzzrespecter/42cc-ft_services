@@ -3,12 +3,14 @@ kind: Service
 metadata:
     name: phpmyadmin-service
 spec:
+    type: LoadBalancer
     selector:
         app: phpmyadmin
     ports:
-        - protocol: TCP
+        - name: http
+          protocol: TCP
           port: 5000
-          targetPort: 80
+          targetPort: 5000
 ---
 apiVersion: apps/v1
 kind: Deployment

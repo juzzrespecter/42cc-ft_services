@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata: 
+    name: ftps-server
+spec:
+    type: LoadBalancer
+    selector:
+        app: ftps-server
+    ports:
+        - protocol: TCP
+          port: 21
+          targetPort: 21
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: ftps-server
+    labels:
+        app: ftps-server
+spec:
+    replicas: 2
+    selector: 
+        matchLabel:
+            app: ftps-server
+    templates:
+        metadata:
+            labels:
+                app: ftps-server
+        spec:
+            containers:
+                - name: ftps-server
+                  image: ftps-server
+                  imagePullPolicy: Never
+                  ports:
+                      - containerPort: 21
+

@@ -5,6 +5,11 @@
 minikube start
 eval $(minikube docker-env)
 
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+
+## http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
+##
+## access to kubernetes web dashboard
 ## --- MetalLB config.
 
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
@@ -33,4 +38,17 @@ kubectl apply -f srcs/phpmyadmin-config.yaml
 docker build ./srcs/mysql/ -t mysql
 kubectl apply -f srcs/mysql-config.yaml
 
-## tbc...
+## --- vsftpd setup
+
+docker build ./srcs/ftps-server/ -t ftps-server
+kubectl apply -f srcs/ftps-server-config.yaml
+
+## --- grafana setup
+
+docker build ./srcs/grafana/ -t grafana
+kubectl apply -f srcs/grafana-config.yaml
+
+## --- influxDB setup
+
+docker build ./srcs/influxdb/ -t influxdb
+kubectl apply -f srcs/influxdb-config.yaml

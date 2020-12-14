@@ -1,48 +1,48 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: mysql-service
+    name: influxdb
     labels:
-        app: mysql-service
+        app: influxdb
 spec:
     ports:
-        - port: 3306
-          targetPort: 3306
+        - port: 8086
+          targetPort: 8086
           protocol: TCP
     selector:
-        app: mysql
+        app: influxdb
     clusterIP: None
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-    name: mysql
+    name: influxdb
     labels:
-        app: mysql
+        app: influxdb
 spec:
-    serviceName: mysql-service
+    serviceName: influxdb
     selector:
         matchLabels: 
-            app: mysql
+            app: influxdb
     replicas: 1 # tmp
     template:
         metadata:
             labels:
-                app: mysql
+                app: influxdb
         spec:
             containers:
-                - name: mysql
-                  image: mysql
+                - name: influxdb
+                  image: influxdb
                   imagePullPolicy: Never
                   ports:
                       - protocol: TCP
-                        containerPort: 3306
+                        containerPort: 8086
                   volumeMounts:
-                      - name: mysql-volume
-                        mountPath: /var/lib/mysql
+                      - name: influxdb-volume
+                        mountPath: /var/lib/influxdb ## to change
     volumeClaimTemplates:
         - metadata:
-                name: mysql-volume
+                name: influxdb-volume
           spec:
                 accessModes: ["ReadWriteOnce"]
                 resources:
