@@ -1,11 +1,14 @@
 FROM	alpine:latest
 
 RUN		apk update; apk add influxdb \
-							openrc; \
+							openrc \
+							--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf; \
 					openrc; \
 					touch /run/openrc/softlevel;
 
 EXPOSE	8086
+
+COPY	./srcs/influxdb.conf /etc/
 
 COPY	./srcs/influxdb-setup.sh /
 

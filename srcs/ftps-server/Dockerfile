@@ -1,9 +1,10 @@
 FROM	alpine:latest
 
 RUN		apk update; apk add vsftpd \
-							openrc; \
+							openrc \
+							--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf \
 					openrc; \
-					touch /etc/openrc/softlvel;
+					touch /run/openrc/softlevel;
 					
 COPY	./srcs/vsftpd.conf	/etc/vsftpd/
 

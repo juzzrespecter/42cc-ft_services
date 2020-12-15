@@ -5,7 +5,8 @@ RUN	apk update; apk add wget \
 				openrc \
 				openssl \
 				php-fpm \
-				php-mysqli --no-cache; \
+				php-mysqli --no-cache \
+				--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf; \
 			openrc; \
 			touch /run/openrc/softlevel; \
 			cd /tmp; \
@@ -14,12 +15,11 @@ RUN	apk update; apk add wget \
 			mv wordpress/* /var/www/; \
 			rm latest.tar.gz; \
 			mkdir -p /run/nginx/; \
+			mkdir -p /etc/ssl; \
 			addgroup -S www; \
 			adduser -S -H www -g www; \
 			chown www:www /var/www; \
-			chmod 755 /var/www; \
-			openssl req -x509 -nodes -newkey rsa:4096 -keyout /etc/ssl/private/nginx-key.key -out /etc/ssl/certs/nginx-cert.crt -days 365 \
-				-subj "/C=ES/ST=Madriz/L=42/O=42/OU=services/CN=false_ip";
+			chmod 755 /var/www;
 
 COPY	--chown=www:www ./srcs/nginx.conf /etc/nginx/
 

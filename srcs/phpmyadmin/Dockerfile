@@ -10,7 +10,8 @@ RUN	apk update; apk add nginx \
 				php-mysqli \
 				openssl \
 				wget \
-				openrc --no-cache; \
+				openrc --no-cache \
+				--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf; \
 			openrc; \
 			touch /run/openrc/softlevel; \
 			cd /tmp; \
@@ -22,8 +23,7 @@ RUN	apk update; apk add nginx \
 			chown -R www:www /var/www; \
 			chmod -R 755 /var/www; \
 			mkdir -p /run/nginx; \
-			openssl req -x509 -nodes -newkey rsa:4096 -keyout /etc/ssl/private/nginx-key.key -out /etc/ssl/certs/nginx-cert.crt -days 365 \
-						-subj "/C=ES/ST=Madriz/L=42/O=42/OU=services/CN=false_ip";
+			mkdir -p /etc/ssl;
 
 COPY	--chown=www:www ./srcs/nginx.conf /etc/nginx/
 

@@ -55,8 +55,14 @@ spec:
                       volumeMounts:
                           - name: www
                             mountPath: /var/www/html
+                          - name: ssl-certs
+                            mountPath: /etc/ssl
+                            readOnly: true
                 volumes:
                      - name: www
                        persistentVolumeClaim: 
                             claimName: wordpress-volume-claim
+                     - name: ssl-certs
+                       secret:
+                           secretName: ssl-cert
 

@@ -18,11 +18,11 @@ metadata:
     labels:
         app: ftps-server
 spec:
-    replicas: 2
+    replicas: 1
     selector: 
-        matchLabel:
+        matchLabels:
             app: ftps-server
-    templates:
+    template:
         metadata:
             labels:
                 app: ftps-server

@@ -39,7 +39,14 @@ spec:
                         containerPort: 8086
                   volumeMounts:
                       - name: influxdb-volume
-                        mountPath: /var/lib/influxdb ## to change
+                        mountPath: /var/lib/influxdb ## to change??
+                      - name: ssl-certs
+                        mountPath: /etc/ssl
+                        readOnly: true
+            volumes:
+                - name: ssl-certs
+                  secret:
+                      secretName: ssl-cert
     volumeClaimTemplates:
         - metadata:
                 name: influxdb-volume
