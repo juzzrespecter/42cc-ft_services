@@ -1,19 +1,19 @@
 <?php
 define('FORCE_SSL_ADMIN', true);
 
-define('WP_HOME','https://load-balancer/wordpress');
-define('WP_SITEURL','https://load-balancer/wordpress');
+define('WP_HOME','https://wordpress');
+define('WP_SITEURL','https://wordpress');
 
 if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
 	$_SERVER['HTTPS']='on';
 
 define( 'DB_NAME', 'wp_database' );
 
-define( 'DB_USER', 'wp_admin' );
+define( 'DB_USER', 'amigo' );
 
-define( 'DB_PASSWORD', 'wp_passwd' );
+define( 'DB_PASSWORD', 'passwd' );
 
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', '172.17.0.9:3306' );
 
 define( 'DB_CHARSET', 'utf8' );
 

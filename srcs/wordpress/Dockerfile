@@ -29,4 +29,6 @@ COPY	--chown=www:www ./srcs/wp-config.php /var/www/
 
 VOLUME	/var/www/html
 
+EXPOSE	80/tcp
+
 CMD	["/wordpress-setup.sh"]
