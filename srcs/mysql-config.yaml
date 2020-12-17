@@ -48,4 +48,5 @@ spec:
                 resources:
                     requests:
                         storage: 2Gi
+                        ## this needs env vars
 

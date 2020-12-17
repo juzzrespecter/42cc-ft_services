@@ -7,13 +7,13 @@ define('WP_SITEURL','https://wordpress');
 if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
 	$_SERVER['HTTPS']='on';
 
-define( 'DB_NAME', 'wp_database' );
+define( 'DB_NAME', 'db_name' );
 
-define( 'DB_USER', 'amigo' );
+define( 'DB_USER', 'db_user' );
 
-define( 'DB_PASSWORD', 'passwd' );
+define( 'DB_PASSWORD', 'db_password' );
 
-define( 'DB_HOST', '172.17.0.9:3306' );
+define( 'DB_HOST', 'db_host' );
 
 define( 'DB_CHARSET', 'utf8' );
 
