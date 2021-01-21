@@ -4,7 +4,6 @@ metadata:
     name: wp-credentials
 type: Opaque
 data:
-    db_host: bXlzcWw6MzMwNgo= 
     db_name: d3BfZGF0YWJhc2UK
     db_user: d3BfdXNlcgo=
     db_password: d3BfcGFzc3dkCg==
@@ -81,11 +80,6 @@ spec:
                                 secretKeyRef:
                                     name: wp-credentials
                                     key: db_password
-                          - name: DB_HOST
-                            valueFrom:
-                                secretKeyRef:
-                                    name: wp-credentials
-                                    key: db_host
 
                 volumes:
                      - name: www

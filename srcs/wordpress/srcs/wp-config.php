@@ -13,7 +13,7 @@ define( 'DB_USER', 'db_user' );
 
 define( 'DB_PASSWORD', 'db_password' );
 
-define( 'DB_HOST', 'db_host' );
+define( 'DB_HOST', 'mysql' );
 
 define( 'DB_CHARSET', 'utf8' );
 

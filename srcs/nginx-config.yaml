@@ -23,7 +23,7 @@ metadata:
         labels:
                 app: nginx
 spec:
-        replicas: 1 ## tmp para cont. debug
+        replicas: 2 ## tmp para cont. debug
         selector:
                 matchLabels:
                         app: nginx
