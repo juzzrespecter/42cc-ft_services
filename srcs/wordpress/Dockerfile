@@ -13,20 +13,18 @@ RUN	apk update; apk add wget \
 			wget https://wordpress.org/latest.tar.gz; \
 			tar xzf latest.tar.gz; \
 			mkdir -p /var/www/html/; \
-			mv wordpress/* /var/www/html/; \
-			rm -rf latest.tar.gz wordpress; \
+			rm -rf latest.tar.gz; \
 			mkdir -p /run/nginx/; \
-			mkdir -p /etc/ssl; \
 			addgroup -S www; \
 			adduser -S -H www -g www; \
-			chown www:www /var/www; \
-			chmod 755 /var/www;
+			chown -R www:www /tmp/wordpress; \
+			chmod -R 755 /tmp/wordpress;
 
 COPY	--chown=www:www ./srcs/nginx.conf /etc/nginx/
 
 COPY	./srcs/wordpress-setup.sh /
 
-COPY	--chown=www:www ./srcs/wp-config.php /var/www/html/
+COPY	--chown=www:www ./srcs/wp-config.php /tmp/wordpress/
 
 VOLUME	/var/www/html/
 
