@@ -1,11 +1,4 @@
 <?php
-define('FORCE_SSL_ADMIN', true);
-
-define('WP_HOME','https://wordpress');
-define('WP_SITEURL','https://wordpress');
-
-if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false)
-	$_SERVER['HTTPS']='on';
 
 define( 'DB_NAME', 'db_name' );
 
@@ -13,7 +6,7 @@ define( 'DB_USER', 'db_user' );
 
 define( 'DB_PASSWORD', 'db_password' );
 
-define( 'DB_HOST', 'mysql' );
+define( 'DB_HOST', 'mysql-svc.default.svc.cluster.local' );
 
 define( 'DB_CHARSET', 'utf8' );
 

@@ -2,9 +2,8 @@ FROM	alpine:latest
 
 COPY	./srcs/mysql-config.sql /tmp
 
-RUN		apk update; apk add mariadb \
-							mariadb-client \
-							mariadb-common \
+RUN		apk update; apk add mysql \
+							mysql-client \
 							openrc \
 							--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf --no-cache; \
 					openrc; \

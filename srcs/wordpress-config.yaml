@@ -5,7 +5,7 @@ metadata:
 type: Opaque
 data:
     db_name: d3BfZGF0YWJhc2UK
-    db_user: d3BfdXNlcgo=
+    db_user: d3BfYWRtaW4K
     db_password: d3BfcGFzc3dkCg==
 ---
 apiVersion: v1
@@ -26,12 +26,28 @@ spec:
                 app: wordpress
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: wordpress-volume
+    labels:
+        type: local
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 1Gi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/var/www/html/"
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: wordpress-volume-claim
   labels:
     app: wordpress
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
