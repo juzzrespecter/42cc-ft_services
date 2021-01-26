@@ -5,6 +5,21 @@ RUN	apk update; apk add wget \
 				openrc \
 				openssl \
 				php-fpm \
+				php7-common \
+				php7-iconv \
+				php7-json \
+				php7-gd \
+				php7-curl \
+				php7-xml \
+				php7-imap \
+				php7-cgi \
+				fcgi \
+				php7-pdo \
+				php7-pdo_mysql \
+				php7-soap \
+				php7-xmlrpc \
+				php7-posix \
+				php7 \
 				php-mysqli --no-cache \
 				--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf; \
 			openrc; \

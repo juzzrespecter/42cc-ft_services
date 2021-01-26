@@ -12,4 +12,6 @@ RUN		apk update; apk add mysql \
 
 COPY	./srcs/mysql-setup.sh /
 
+COPY	./srcs/mariadb-server.cnf /etc/my.cnf.d/
+
 CMD		["/mysql-setup.sh"]

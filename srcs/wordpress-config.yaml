@@ -64,7 +64,7 @@ spec:
         selector:
             matchLabels:
                 app: wordpress
-        replicas: 1 ## tmp
+        replicas: 3
         template:
             metadata:
                 labels: 
