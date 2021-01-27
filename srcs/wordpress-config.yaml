@@ -11,7 +11,7 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-        name: wordpress
+        name: wordpress-svc
         labels:
             app: wordpress
 spec:
@@ -31,6 +31,7 @@ metadata:
     name: wordpress-volume
     labels:
         type: local
+        volume-svc: wordpress
 spec:
     storageClassName: manual
     capacity:
@@ -38,7 +39,7 @@ spec:
     accessModes:
         - ReadWriteOnce
     hostPath:
-        path: "/mnt/var/www/html/"
+        path: "/mnt/var/www/localhost/htdocs"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -53,6 +54,10 @@ spec:
   resources:
     requests:
       storage: 200Mi
+  selector:    
+    matchLabels:
+      type: local
+      volume-svc: wordpress
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -64,7 +69,7 @@ spec:
         selector:
             matchLabels:
                 app: wordpress
-        replicas: 3
+        replicas: 1 
         template:
             metadata:
                 labels: 
@@ -79,7 +84,7 @@ spec:
                             containerPort: 80
                       volumeMounts:
                           - name: www
-                            mountPath: /var/www/html
+                            mountPath: /var/www/localhost/htdocs
                       env:
                           - name: DB_NAME
                             valueFrom:
