@@ -1,20 +1,4 @@
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: mysql-volume
-    labels:
-        type: local
-        volume-svc: mysql
-spec:
-    storageClassName: manual
-    capacity: 
-        storage: 1Gi
-    accessModes:
-        - ReadWriteOnce
-    hostPath:
-        path: "/mnt/var/lib/mysql"
----
-apiVersion: v1
 kind: Service
 metadata:
     name: mysql-svc
@@ -27,20 +11,52 @@ spec:
           protocol: TCP
     selector:
         app: mysql
-    clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-volume
+  labels:
+    type: local
+    volume-svc: mysql
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/var/lib/mysql/"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-volume-claim
+  labels:
+    app: mysql
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 400Mi
+  selector:
+    matchLabels:
+      type: local
+      volume-svc: mysql
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
     name: mysql
     labels:
         app: mysql
 spec:
-    serviceName: mysql-svc
     selector:
         matchLabels: 
             app: mysql
-    replicas: 1 # tmp
+    replicas: 1 
     template:
         metadata:
             labels:
@@ -54,18 +70,10 @@ spec:
                       - protocol: TCP
                         containerPort: 3306
                   volumeMounts:
-                      - name: mysql-volume-claim
+                      - name: mysql-volume
                         mountPath: /var/lib/mysql
-    volumeClaimTemplates:
-        - metadata:
-                name: mysql-volume-claim
-          spec:
-                accessModes: ["ReadWriteOnce"]
-                resources:
-                    requests:
-                        storage: 1Gi
-                        storageClassName: manual
-                selector:
-                    matchLabels:
-                        type: local
-                        volume-svc: mysql
+            volumes:
+                - name: mysql-volume
+                  persistentVolumeClaim:
+                       claimName: mysql-volume-claim
+## env vars for mysql user - pw

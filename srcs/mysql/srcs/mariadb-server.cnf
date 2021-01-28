@@ -21,7 +21,8 @@
 #
 # Allow server to accept connections on all interfaces.
 #
-bind-address=mysql-svc.default.svc.cluster.local
+# bind-address=mysql-svc.default.svc.cluster.local
+bind-address=0.0.0.0
 #
 # Optional setting
 #wsrep_slave_threads=1

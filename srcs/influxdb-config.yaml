@@ -13,6 +13,40 @@ spec:
         app: influxdb
     clusterIP: None
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: influxdb-volume
+    labels:
+        type: local
+        volume-svc: influxdb
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 500Mi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/var/lib/influxbd"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: influxdb-volume-claim
+    labels:
+        app: influxdb
+spec:
+    storageClassName: manial
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 400Mi
+    selector:
+        matchLabels:
+            type: local
+            volume-svc: influxdb
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -47,13 +81,7 @@ spec:
                 - name: ssl-certs
                   secret:
                       secretName: ssl-cert
-    volumeClaimTemplates:
-        - metadata:
-                name: influxdb-volume
-          spec:
-                accessModes: ["ReadWriteOnce"]
-                resources:
-                    requests:
-                        storage: 2Gi
-
-                        ## this needs env vars
+                - name: influxdb-volume
+                  persistentVolumeClaim:
+                      claimName: influxdb-volume-claim
+                           ## this needs env vars
