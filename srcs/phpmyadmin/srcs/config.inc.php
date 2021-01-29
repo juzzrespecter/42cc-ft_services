@@ -10,7 +10,7 @@ $i++;
 
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 
-$cfg['Servers'][$i]['host'] = '172.17.0.9:3306';
+$cfg['Servers'][$i]['host'] = 'mysql-svc.default.svc.cluster.local:3306';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
 

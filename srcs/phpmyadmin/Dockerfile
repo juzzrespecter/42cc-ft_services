@@ -31,4 +31,6 @@ COPY	--chown=www:www ./srcs/config.inc.php /var/www/
 
 COPY	./srcs/pma-setup.sh /
 
+COPY	./srcs/telegraf.conf /tmp
+
 CMD	["/pma-setup.sh"]

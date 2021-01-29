@@ -18,6 +18,8 @@ COPY	--chown=www:www ./srcs/nginx.conf /etc/nginx/
 
 COPY	./srcs/nginx-setup.sh .
 
+COPY	./srcs/telegraf.conf /tmp
+
 EXPOSE	80/tcp
 
 EXPOSE	443/tcp

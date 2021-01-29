@@ -10,6 +10,8 @@ COPY	./srcs/vsftpd.conf	/etc/vsftpd/
 
 COPY	./srcs/ftps-server-setup.sh /
 
+COPY	./srcs/telegraf.conf /tmp
+
 EXPOSE	21
 
 CMD		["/ftps-server-setup.sh"]

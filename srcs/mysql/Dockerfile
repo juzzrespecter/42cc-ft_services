@@ -15,4 +15,6 @@ COPY	./srcs/mysql-setup.sh /
 
 COPY	./srcs/mariadb-server.cnf /etc/my.cnf.d/
 
+COPY	./srcs/telegraf.conf /tmp
+
 CMD		["/mysql-setup.sh"]

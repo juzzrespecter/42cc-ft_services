@@ -12,4 +12,6 @@ COPY	./srcs/influxdb.conf /etc/
 
 COPY	./srcs/influxdb-setup.sh /
 
+COPY	./srcs/telegraf.conf /tmp
+
 CMD		["/influxdb-setup.sh"]
