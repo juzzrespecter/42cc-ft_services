@@ -11,7 +11,6 @@ spec:
           protocol: TCP
     selector:
         app: influxdb
-    clusterIP: None
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -36,7 +35,7 @@ metadata:
     labels:
         app: influxdb
 spec:
-    storageClassName: manial
+    storageClassName: manual
     accessModes:
         - ReadWriteOnce
     resources:
@@ -48,13 +47,12 @@ spec:
             volume-svc: influxdb
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
     name: influxdb
     labels:
         app: influxdb
 spec:
-    serviceName: influxdb
     selector:
         matchLabels: 
             app: influxdb
