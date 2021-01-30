@@ -64,7 +64,7 @@ spec:
         spec:
             containers:
                 - name: influxdb
-                  image: influxdb
+                  image: influxdb:latest
                   imagePullPolicy: Never
                   ports:
                       - protocol: TCP

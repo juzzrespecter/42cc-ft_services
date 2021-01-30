@@ -1,16 +1,20 @@
 FROM	alpine:3.12
 
-RUN	apk update; apk add wget \
-				nginx \
+COPY	./srcs/wordpress-setup.sh /
+
+RUN		echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories; \
+		apk update; \
+		apk add wget \
+				lighttpd \
 				openrc \
-				openssl \
-				php-fpm \
+				telegraf \
 				php7-common \
 				php7-iconv \
 				php7-json \
 				php7-gd \
 				php7-curl \
 				php7-xml \
+				php7-mysqli \
 				php7-imap \
 				php7-cgi \
 				fcgi \
@@ -19,31 +23,28 @@ RUN	apk update; apk add wget \
 				php7-soap \
 				php7-xmlrpc \
 				php7-posix \
-				php7 \
-				php-mysqli --no-cache \
-				--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf; \
-			openrc; \
-			touch /run/openrc/softlevel; \
-			cd /tmp; \
-			wget https://wordpress.org/latest.tar.gz; \
-			tar xzf latest.tar.gz; \
-			rm -rf latest.tar.gz; \
-			mkdir -p /run/nginx/; \
-			addgroup -S www; \
-			adduser -S -H www -g www; \
-			chown -R www:www /tmp/wordpress; \
-			chmod -R 755 /tmp/wordpress;
+				php7-mcrypt \
+				php7-gettext \
+				php7-ldap \
+				php7-ctype \
+				php7-dom; \
+		cd /tmp/; \
+		wget https://wordpress.org/latest.tar.gz; \
+		tar xzf latest.tar.gz; \
+		rm latest.tar.gz; \
+		chown -R lighttpd /tmp/wordpress; \
+		openrc; \
+		touch /run/openrc/softlevel; \
+		chmod +x /wordpress-setup.sh
 
-COPY	--chown=www:www ./srcs/nginx.conf /etc/nginx/
+COPY	./srcs/lighttpd.conf /etc/lighttpd/
 
-COPY	./srcs/wordpress-setup.sh /
+COPY	./srcs/wp-config.php /tmp/wordpress/
 
-COPY	--chown=www:www ./srcs/wp-config.php /tmp/wordpress/
-
-COPY	./srcs/telegraf.conf /tmp
+COPY	./srcs/telegraf.conf /tmp/
 
 VOLUME	/var/www/localhost/htdocs/
 
 EXPOSE	80/tcp
 
-CMD	["/wordpress-setup.sh"]
+CMD		["/wordpress-setup.sh"]

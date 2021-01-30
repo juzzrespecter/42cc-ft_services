@@ -29,7 +29,7 @@ spec:
         spec:
             containers:
                 - name: ftps-server
-                  image: ftps-server
+                  image: ftps-server:latest
                   imagePullPolicy: Never
                   ports:
                       - containerPort: 21

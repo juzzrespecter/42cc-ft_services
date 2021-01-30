@@ -77,7 +77,7 @@ spec:
             spec:
                 containers:
                     - name: wordpress
-                      image: wordpress
+                      image: wordpress:latest
                       imagePullPolicy: Never
                       ports:
                           - protocol: TCP
