@@ -20,12 +20,13 @@ SET time_zone = "+00:00";
 --
 -- Database: `wp_database`
 --
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `wp_commentmeta`
 --
+
+USE wp_database;
 
 CREATE TABLE `wp_commentmeta` (
   `meta_id` bigint(20) UNSIGNED NOT NULL,
