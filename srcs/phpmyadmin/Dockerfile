@@ -23,7 +23,7 @@ RUN	apk update; apk add nginx \
 			chown -R www:www /var/www; \
 			chmod -R 755 /var/www; \
 			mkdir -p /run/nginx; \
-			mkdir -p /etc/ssl;
+			mkdir -p /etc/ssl; \
 			mkdir -p /var/www/tmp; \
 			chown -R www:www /var/www/tmp; \
 			chmod -R 755 /var/www/tmp;
