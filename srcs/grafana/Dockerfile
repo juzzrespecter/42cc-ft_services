@@ -12,8 +12,6 @@ RUN		apk update; apk add --repository=https://dl-cdn.alpinelinux.org/alpine/edge
 							openrc; \
 					chmod +x grafana-setup.sh;
 
-COPY	./srcs/telegraf.conf /tmp
-
 EXPOSE	3000
 
 CMD		["/grafana-setup.sh"]

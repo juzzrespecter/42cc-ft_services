@@ -72,8 +72,14 @@ spec:
                   volumeMounts:
                       - name: mysql-volume
                         mountPath: /var/lib/mysql
+                      - name: telegraf-conf
+                        mountPath: /etc/telegraf/
+                        readOnly: true
             volumes:
                 - name: mysql-volume
                   persistentVolumeClaim:
                        claimName: mysql-volume-claim
+                - name: telegraf-conf
+                  configMap:
+                       name: telegraf-conf
 ## env vars for mysql user - pw

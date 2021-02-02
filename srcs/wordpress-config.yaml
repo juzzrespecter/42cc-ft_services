@@ -85,6 +85,9 @@ spec:
                       volumeMounts:
                           - name: www
                             mountPath: /var/www/localhost/htdocs
+                          - name: telegraf-conf
+                            mountPath: /etc/telegraf/
+                            readOnly: true
                       env:
                           - name: DB_NAME
                             valueFrom:
@@ -106,4 +109,7 @@ spec:
                      - name: www
                        persistentVolumeClaim: 
                             claimName: wordpress-volume-claim
+                     - name: telegraf-conf
+                       configMap:
+                            name: telegraf-conf
 

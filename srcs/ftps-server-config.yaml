@@ -33,4 +33,12 @@ spec:
                   imagePullPolicy: Never
                   ports:
                       - containerPort: 21
+                  volumeMounts:
+                      - name: telegraf-conf
+                        mountPath: /etc/telegraf/
+                        readOnly: true
+           volumes:
+                - name: telegraf-conf
+                  configMap:
+                      name: telegraf-conf
 

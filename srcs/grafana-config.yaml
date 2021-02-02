@@ -37,9 +37,14 @@ spec:
                       - name: ssl-certs
                         mountPath: /etc/ssl/
                         readOnly: true
+                      - name: telegraf-conf
+                        mountPath: /etc/telegraf/
+                        readOnly: true
             volumes:
                 - name: ssl-certs
                   secret:
                         secretName: ssl-cert
-
+                - name: telegraf-conf
+                  configMap:
+                        name: telegraf-conf
                         ## this needs env vars
