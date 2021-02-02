@@ -17,8 +17,8 @@ $cfg['Servers'][$i]['AllowNoPassword'] = false;
 
 $cfg['Servers'][$i]['controlhost'] = '';
 $cfg['Servers'][$i]['controlport'] = '';
-$cfg['Servers'][$i]['controluser'] = 'pma';
-$cfg['Servers'][$i]['controlpass'] = 'pmapass';
+$cfg['Servers'][$i]['controluser'] = 'CHANGE_USER';
+$cfg['Servers'][$i]['controlpass'] = 'CHANGE_PASSWD';
 
 $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin';
 $cfg['Servers'][$i]['bookmarktable'] = 'pma__bookmark';

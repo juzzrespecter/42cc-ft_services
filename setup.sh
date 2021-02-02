@@ -22,6 +22,8 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 
 kubectl apply -f srcs/metallb-config.yaml
 kubectl apply -f srcs/ssl-cert.yaml
+
+kubectl apply -f srcs/telegraf-conf.yaml
 ## --- nginx setup
 
 docker build ./srcs/nginx/ -t nginx:latest

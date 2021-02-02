@@ -39,7 +39,7 @@ spec:
     accessModes:
         - ReadWriteOnce
     hostPath:
-        path: "/mnt/var/www/localhost/htdocs"
+        path: "/mnt/wp/"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -86,8 +86,8 @@ spec:
                           - name: www
                             mountPath: /var/www/localhost/htdocs
                           - name: telegraf-conf
-                            mountPath: /etc/telegraf/
-                            readOnly: true
+                            mountPath: /etc/telegraf.conf
+                            subPath: telegraf.conf
                       env:
                           - name: DB_NAME
                             valueFrom:

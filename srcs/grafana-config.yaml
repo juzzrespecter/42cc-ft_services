@@ -38,8 +38,8 @@ spec:
                         mountPath: /etc/ssl/
                         readOnly: true
                       - name: telegraf-conf
-                        mountPath: /etc/telegraf/
-                        readOnly: true
+                        mountPath: /etc/telegraf.conf
+                        subPath: telegraf.conf
             volumes:
                 - name: ssl-certs
                   secret:

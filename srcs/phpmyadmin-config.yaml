@@ -1,4 +1,13 @@
 apiVersion: v1
+kind: Secret
+metadata:
+    name: pma-credentials
+type: Opaque
+data:
+    pma_user: cG1hX3VzZXIK
+    pma_passwd: cG1hX3Bhc3N3ZAo=
+---
+apiVersion: v1
 kind: Service
 metadata:
     name: phpmyadmin-svc
@@ -36,8 +45,19 @@ spec:
                        - containerPort: 80
                    volumeMounts:
                        - name: telegraf-conf
-                         mountPath: /etc/telegraf/
-                         readOnly: true
+                         mountPath: /etc/telegraf.conf
+                         subPath: telegraf.conf
+                   env:
+                       - name: PMA_USER
+                         valueFrom:
+                             secretKeyRef:
+                                 name: pma-credentials
+                                 key: pma_user
+                       - name: PMA_PASSWD
+                         valueFrom:
+                             secretKeyRef:
+                                 name: pma-credentials
+                                 key: pma_passwd
              volumes:
                  - name: telegraf-conf
                    configMap:
