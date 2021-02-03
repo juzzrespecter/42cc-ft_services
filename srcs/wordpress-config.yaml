@@ -5,8 +5,8 @@ metadata:
 type: Opaque
 data:
     db_name: d3BfZGF0YWJhc2UK
-    db_user: d3BfYWRtaW4K
-    db_password: d3BfcGFzc3dkCg==
+    wp_admin: d3BfYWRtaW4K
+    wp_passwd: d3BfcGFzc3dkCg==
 ---
 apiVersion: v1
 kind: Service
@@ -86,8 +86,7 @@ spec:
                           - name: www
                             mountPath: /var/www/localhost/htdocs
                           - name: telegraf-conf
-                            mountPath: /etc/telegraf.conf
-                            subPath: telegraf.conf
+                            mountPath: /etc/telegraf/
                       env:
                           - name: DB_NAME
                             valueFrom:
@@ -98,12 +97,12 @@ spec:
                             valueFrom:
                                 secretKeyRef:
                                     name: wp-credentials
-                                    key: db_user
+                                    key: wp_admin
                           - name: DB_PASSWORD
                             valueFrom:
                                 secretKeyRef:
                                     name: wp-credentials
-                                    key: db_password
+                                    key: wp_passwd
 
                 volumes:
                      - name: www

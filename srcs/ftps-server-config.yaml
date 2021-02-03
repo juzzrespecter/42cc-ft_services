@@ -35,8 +35,7 @@ spec:
                       - containerPort: 21
                   volumeMounts:
                       - name: telegraf-conf
-                        mountPath: /etc/telegraf.conf
-                        subPath: telegraf.conf
+                        mountPath: /etc/telegraf/
             volumes:
                 - name: telegraf-conf
                   configMap:

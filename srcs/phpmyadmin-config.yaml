@@ -45,8 +45,7 @@ spec:
                        - containerPort: 80
                    volumeMounts:
                        - name: telegraf-conf
-                         mountPath: /etc/telegraf.conf
-                         subPath: telegraf.conf
+                         mountPath: /etc/telegraf/
                    env:
                        - name: PMA_USER
                          valueFrom:

@@ -84,8 +84,7 @@ spec:
                         mountPath: /etc/ssl
                         readOnly: true
                       - name: telegraf-conf
-                        mountPath: /etc/telegraf.conf
-                        subPath: telegraf.conf
+                        mountPath: /etc/telegraf/
                   env:
                       - name: TELEGRAF_PW
                         valueFrom:

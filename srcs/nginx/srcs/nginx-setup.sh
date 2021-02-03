@@ -1,4 +1,4 @@
 #!/bin/sh
-rc-service telegraf start
 rc-service php-fpm7 start
+telegraf &
 nginx -g 'daemon off;'

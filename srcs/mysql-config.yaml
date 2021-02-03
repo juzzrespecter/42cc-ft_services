@@ -30,7 +30,7 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 500Mi
+    storage: 600Mi
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -48,7 +48,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 400Mi
+      storage: 600Mi
   selector:
     matchLabels:
       type: local
@@ -81,8 +81,7 @@ spec:
                       - name: mysql-volume
                         mountPath: /var/lib/mysql
                       - name: telegraf-conf
-                        mountPath: /etc/telegraf.conf
-                        subPath: telegraf.conf
+                        mountPath: /etc/telegraf/
                   env:
                       - name: PMA_USER
                         valueFrom:
@@ -98,12 +97,12 @@ spec:
                         valueFrom:
                                 secretKeyRef:
                                     name: wp-credentials
-                                    key: db_user
-                      - name: WP_PASSWORD
+                                    key: wp_admin
+                      - name: WP_PASSWD
                         valueFrom:
                                 secretKeyRef:
                                     name: wp-credentials
-                                    key: db_password
+                                    key: wp_passwd
                       - name: MYSQL_ROOT_PASSWD
                         valueFrom:
                                 secretKeyRef:
