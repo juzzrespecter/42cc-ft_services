@@ -26,7 +26,8 @@ RUN	apk update; apk add nginx \
 			mkdir -p /etc/ssl; \
 			mkdir -p /var/www/tmp; \
 			chown -R www:www /var/www/tmp; \
-			chmod -R 755 /var/www/tmp;
+			chmod -R 777 /var/www/tmp; \
+			rm /var/www/config.sample.inc.php;
 
 COPY	--chown=www:www ./srcs/nginx.conf /etc/nginx/
 

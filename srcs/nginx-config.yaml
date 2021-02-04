@@ -15,6 +15,10 @@ spec:
                   protocol: TCP
                   port: 443
                   targetPort: 443
+                - name: ssh
+                  protocol: TCP
+                  port: 22
+                  targetPort: 22
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -23,7 +27,7 @@ metadata:
         labels:
                 app: nginx
 spec:
-        replicas: 2 ## tmp para cont. debug
+        replicas: 2
         selector:
                 matchLabels:
                         app: nginx
@@ -39,6 +43,7 @@ spec:
                                   ports:
                                           - containerPort: 80
                                             containerPort: 443
+                                            containerPort: 22
                                   volumeMounts:
                                     - name: ssl-certs
                                       mountPath: /etc/ssl/

@@ -43,3 +43,4 @@ $cfg['Servers'][$i]['export_templates'] = 'pma__export_templates';
 
 $cfg['UploadDir'] = '';
 $cfg['SaveDir'] = '';
+$cfg['TempDir'] = '/var/www/tmp';

@@ -31,7 +31,7 @@ RUN		echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/reposi
 		cd /tmp/; \
 		wget https://wordpress.org/latest.tar.gz; \
 		tar xzf latest.tar.gz; \
-		rm latest.tar.gz; \
+		rm latest.tar.gz wordpress/wp-config-sample.php; \
 		chown -R lighttpd /tmp/wordpress; \
 		openrc; \
 		touch /run/openrc/softlevel; \
