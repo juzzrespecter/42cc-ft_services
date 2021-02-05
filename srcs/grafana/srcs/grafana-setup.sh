@@ -1,4 +1,4 @@
 #!/bin/sh
 cd /grafana/bin/
-telegraf &
+telegraf --config=/etc/telegraf/telegraf.conf &
 ./grafana-server

@@ -1,4 +1,12 @@
 apiVersion: v1
+kind: Secret
+metadata:
+    name: usr-ftps-pw
+type: Opaque
+data:
+    usr_passwd: dXNyX3Bhc3N3ZAo=
+---
+apiVersion: v1
 kind: Service
 metadata: 
     name: ftps-server
@@ -36,8 +44,13 @@ spec:
                   volumeMounts:
                       - name: telegraf-conf
                         mountPath: /etc/telegraf/
+                  env:
+                      - name: USR_PASSWD
+                        valueFrom:
+                             secretKeyRef:
+                                 name: usr-ftps-pw
+                                 key: usr_passwd
             volumes:
                 - name: telegraf-conf
                   configMap:
                       name: telegraf-conf
-

@@ -1,5 +1,13 @@
 #!/bin/sh
-rc-service php-fpm7 start
+
+# set up ssh server and user for ssh access
 /etc/init.d/sshd start
-telegraf &
+adduser -D usr_joking
+echo "guest:$(echo $USR_PASSWD)" | chpasswd
+
+# init telegraf
+telegraf --config /etc/telegraf/telegraf.conf &
+
+# set up server
+rc-service php-fpm7 start
 nginx -g 'daemon off;'
