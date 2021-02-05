@@ -3,7 +3,6 @@
 ## --- Buenos dias :)
 
 minikube start
-eval $(minikube docker-env)
 
 ## --- web dashboard setup
 
