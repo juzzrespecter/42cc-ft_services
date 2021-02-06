@@ -81,10 +81,8 @@ spec:
                       - name: influxdb-volume
                         mountPath: /var/lib/influxdb ## to change??
                       - name: ssl-certs
-                        mountPath: /etc/ssl
+                        mountPath: /etc/ssl/influxdb/
                         readOnly: true
-                      - name: telegraf-conf
-                        mountPath: /etc/telegraf/
                   env:
                       - name: TELEGRAF_PW
                         valueFrom:
@@ -98,7 +96,3 @@ spec:
                 - name: influxdb-volume
                   persistentVolumeClaim:
                       claimName: influxdb-volume-claim
-                - name: telegraf-conf
-                  configMap:
-                      name: telegraf-conf
-                           ## this needs env vars
