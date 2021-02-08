@@ -15,9 +15,15 @@ spec:
     selector:
         app: ftps-server
     ports:
-        - protocol: TCP
+        - name: ftp
+          protocol: TCP
+          port: 20
+          targetPort: 20
+        - name: ftps
+          protocol: TCP
           port: 21
           targetPort: 21
+        #- name: aqui toca abrir puertos pasivos para la conexion 
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -40,10 +46,14 @@ spec:
                   image: ftps-server:latest
                   imagePullPolicy: Never
                   ports:
+                      - containerPort: 20
                       - containerPort: 21
                   volumeMounts:
                       - name: telegraf-conf
                         mountPath: /etc/telegraf/
+                      - name: ssl-certs
+                        mountPath: /etc/ssl/
+                        readOnly: true
                   env:
                       - name: USR_PASSWD
                         valueFrom:
@@ -54,3 +64,6 @@ spec:
                 - name: telegraf-conf
                   configMap:
                       name: telegraf-conf
+                - name: ssl-certs
+                  secret:
+                      secretName: ssl-cert

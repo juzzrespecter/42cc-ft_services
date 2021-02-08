@@ -6,6 +6,7 @@ do
 	sleep 1;
 done
 
+echo "create user admin with password '$ADMIN_PASSWD' with all privileges" | influx;
 echo "create database telegraf" | influx;
-echo "create user telegraf with password '$TELEGRAF_PW'" | influx;
+echo "create user telegraf with password '$TELEGRAF_PASSWD'" | influx;
 echo "grant all on telegraf to telegraf" | influx;

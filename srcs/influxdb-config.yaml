@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: telegraf-credentials
+    name: influx-credentials
 type: Opaque
 data:
-    passwd: dGVsZWdyYWZwdwo=
+    influx-admin-passwd: YWRtaW5fcGFzc3dkCg==
+    telegraf-passwd: dGVsZWdyYWZwdwo=
 ---
 apiVersion: v1
 kind: Service
@@ -84,11 +85,16 @@ spec:
                         mountPath: /etc/ssl/influxdb/
                         readOnly: true
                   env:
-                      - name: TELEGRAF_PW
+                      - name: TELEGRAF_PASSWD
                         valueFrom:
                             secretKeyRef:
-                                name: telegraf-credentials
-                                key: passwd
+                                name: influx-credentials
+                                key: telegraf-passwd
+                      - name: ADMIN_PASSWD
+                        valueFrom:
+                            secretKeyRef:
+                                name: influx-credentials
+                                key: influx-admin-passwd
             volumes:
                 - name: ssl-certs
                   secret:
