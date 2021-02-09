@@ -11,3 +11,4 @@ telegraf --config /etc/telegraf/telegraf.conf &
 # set up server
 rc-service php-fpm7 start
 nginx -g 'daemon off;'
+sleep 1000

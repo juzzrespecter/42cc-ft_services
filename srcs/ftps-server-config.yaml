@@ -7,6 +7,40 @@ data:
     usr_passwd: dXNyX3Bhc3N3ZAo=
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: ftps-volume
+    labels:
+        type: local
+        volume-svc: ftps-server
+spec:
+    storageClassName: manual
+    capacity:
+        storage: 500Mi
+    accessModes:
+        - ReadWriteOnce
+    hostPath:
+        path: "/mnt/ftps/"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: ftps-volume-claim
+    labelss:
+        app: ftps-server
+spec:
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce
+    resources:
+        requests:
+            storage: 300Mi
+    selector:
+        matchLabels:
+            type: local
+            volume-svc: ftps-server
+---
+apiVersion: v1
 kind: Service
 metadata: 
     name: ftps-server
@@ -83,6 +117,8 @@ spec:
                       - name: ssl-certs
                         mountPath: /etc/ssl/
                         readOnly: true
+                      - name: ftps-volume
+                        mountPath: /home/usr_ftps/ftp/uploads
                   env:
                       - name: USR_PASSWD
                         valueFrom:
@@ -96,3 +132,6 @@ spec:
                 - name: ssl-certs
                   secret:
                       secretName: ssl-cert
+                - name: ftps-server
+                  persistentVolumeClaim:
+                      claimName: ftps-volume-claim
