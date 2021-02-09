@@ -23,7 +23,30 @@ spec:
           protocol: TCP
           port: 21
           targetPort: 21
-        #- name: aqui toca abrir puertos pasivos para la conexion 
+        - name: pasv10000
+          protocol: TCP
+          port: 10000
+          targetPort: 10000
+        - name: pasv10001
+          protocol: TCP
+          port: 10001
+          targetPort: 10001
+        - name: pasv10002
+          protocol: TCP
+          port: 10002
+          targetPort: 10002
+        - name: pasv10003
+          protocol: TCP
+          port: 10003
+          targetPort: 10003
+        - name: pasv10004
+          protocol: TCP
+          port: 10004
+          targetPort: 10004
+        - name: pasv10005
+          protocol: TCP
+          port: 10005
+          targetPort: 10005
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -48,6 +71,12 @@ spec:
                   ports:
                       - containerPort: 20
                       - containerPort: 21
+                      - containerPort: 10000
+                      - containerPort: 10001
+                      - containerPort: 10002
+                      - containerPort: 10003
+                      - containerPort: 10004
+                      - containerPort: 10005
                   volumeMounts:
                       - name: telegraf-conf
                         mountPath: /etc/telegraf/
