@@ -4,8 +4,7 @@ metadata:
     name: influx-credentials
 type: Opaque
 data:
-    influx-admin-passwd: YWRtaW5fcGFzc3dkCg==
-    telegraf-passwd: dGVsZWdyYWZwdwo=
+    influx-admin-passwd: cGFzc3dk 
 ---
 apiVersion: v1
 kind: Service
@@ -88,7 +87,7 @@ spec:
                       - name: TELEGRAF_PASSWD
                         valueFrom:
                             secretKeyRef:
-                                name: influx-credentials
+                                name: telegraf-secrets
                                 key: telegraf-passwd
                       - name: ADMIN_PASSWD
                         valueFrom:

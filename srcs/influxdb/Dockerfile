@@ -7,6 +7,7 @@ COPY	./srcs/dbconf.sh /
 RUN		apk update; apk add influxdb \
 							openrc \
 							--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf; \
+					rm -rf /var/cache/apk/*; \
 					openrc; \
 					touch /run/openrc/softlevel; \
 					chmod +x /influxdb-setup.sh /dbconf.sh;

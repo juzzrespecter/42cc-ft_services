@@ -12,6 +12,7 @@ RUN	apk update; apk add nginx \
 				wget \
 				openrc --no-cache \
 				--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf; \
+			rm -rf /var/cache/apk/*; \
 			openrc; \
 			touch /run/openrc/softlevel; \
 			cd /tmp; \

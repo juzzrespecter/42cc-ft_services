@@ -3,6 +3,7 @@ FROM	alpine:3.12
 RUN		apk update; apk add vsftpd \
 							openrc \
 							--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf; \
+					rm -rf /var/cache/apk/*; \
 					openrc; \
 					touch /run/openrc/softlevel;
 					

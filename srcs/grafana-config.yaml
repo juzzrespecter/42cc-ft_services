@@ -35,7 +35,7 @@ spec:
                       - containerPort: 3000
                   volumeMounts:
                       - name: ssl-certs
-                        mountPath: /etc/ssl/
+                        mountPath: /usr/local/share/ca-certificates/
                         readOnly: true
                       - name: telegraf-conf
                         mountPath: /etc/telegraf/

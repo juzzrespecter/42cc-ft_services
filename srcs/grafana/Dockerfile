@@ -2,7 +2,9 @@ FROM	alpine:3.12
 
 COPY	./srcs/grafana-setup.sh /
 
-RUN		apk update; apk add wget; \
+RUN		apk update; apk add wget \
+							ca-certificates; \
+					rm -rf /var/cache/apk/*; \
 					wget https://dl.grafana.com/oss/release/grafana-7.3.7.linux-amd64.tar.gz; \
 					tar -zxvf grafana-7.3.7.linux-amd64.tar.gz; \
 					mv grafana-7.3.7 grafana;

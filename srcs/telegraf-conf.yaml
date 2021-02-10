@@ -1,4 +1,14 @@
 apiVersion: v1
+kind: Secret
+metadata:
+    name: telegraf-secrets
+type: Opaque
+data:
+    telegraf-db: dGVsZWdyYWY=
+    telegraf-usr: dGVsZWdyYWY=
+    telegraf-passwd: dGVsZWdyYWZwYXNzd2Q=
+---
+apiVersion: v1
 kind: ConfigMap
 metadata:
     name: telegraf-conf
@@ -18,9 +28,9 @@ data:
           omit_hostname = false
         [[outputs.influxdb]]
           urls = ["https://influxdb-svc.default.svc.cluster.local:8086"]
-          database = "telegraf"
+          database = ""
           username = "telegraf"
-          password = "telegrafpw"
+          password = "telegrafpasswd"
           insecure_skip_verify = true
         [[inputs.cpu]]
           percpu = true

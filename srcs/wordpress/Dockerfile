@@ -28,6 +28,7 @@ RUN		echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/reposi
 				php7-ldap \
 				php7-ctype \
 				php7-dom; \
+		rm -rf /var/cache/apk/*; \
 		cd /tmp/; \
 		wget https://wordpress.org/latest.tar.gz; \
 		tar xzf latest.tar.gz; \

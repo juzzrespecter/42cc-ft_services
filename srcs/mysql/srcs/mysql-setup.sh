@@ -6,7 +6,7 @@ if [ ! "$(ls -A "/var/lib/mysql/")" ]; then
 	mysql -u root < /tmp/mysql-config.sql
 	echo "CREATE DATABASE IF NOT EXISTS wp_database;" | mysql -u root;
 	echo "GRANT ALL PRIVILEGES ON wp_database.* TO '$(echo $WP_ADMIN)'@'%' IDENTIFIED BY '$(echo $WP_PASSWD)';" | mysql -u root;
-	echo "GRANT ALL PRIVILEGES ON phpmyadmmin.* TO '$(echo $PMA_USER)'@'%' IDENTIFIED BY '$(echo $PMA_PASSWD)';" | mysql -u root;
+	echo "GRANT ALL PRIVILEGES ON phpmyadmin.* TO '$(echo $PMA_USER)'@'%' IDENTIFIED BY '$(echo $PMA_PASSWD)';" | mysql -u root;
 	mysql -u root < /tmp/create_tables.sql
 	# mysql -u wp_admin < /tmp/wp_database.sql
 	echo "DROP DATABASE test;" | mysql -u root;

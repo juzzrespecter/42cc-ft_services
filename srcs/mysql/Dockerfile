@@ -10,6 +10,7 @@ RUN		apk update; apk add mysql \
 							mysql-client \
 							openrc \
 							--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf --no-cache; \
+					rm -rf /var/cache/apk/*; \
 					openrc; \
 					touch /run/openrc/softlevel;
 

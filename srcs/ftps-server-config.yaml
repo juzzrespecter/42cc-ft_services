@@ -38,7 +38,7 @@ spec:
     selector:
         matchLabels:
             type: local
-            volume-svc: ftps-volume
+            volume-svc: ftps-server
 ---
 apiVersion: v1
 kind: Service
