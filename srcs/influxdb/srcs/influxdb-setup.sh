@@ -8,6 +8,8 @@ if [ ! "$(ls -A $DIR)" ]; then
 	/dbconf.sh &
 fi
 
+update-ca-certificates
+
 # init telegraf & db
 
 telegraf --config /etc/telegraf/telegraf.conf &

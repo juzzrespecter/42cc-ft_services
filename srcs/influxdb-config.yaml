@@ -79,9 +79,9 @@ spec:
                         containerPort: 8086
                   volumeMounts:
                       - name: influxdb-volume
-                        mountPath: /var/lib/influxdb ## to change??
+                        mountPath: /var/lib/influxdb
                       - name: ssl-certs
-                        mountPath: /etc/ssl/influxdb/
+                        mountPath: /usr/local/share/ca-certificates/
                         readOnly: true
                   env:
                       - name: TELEGRAF_PASSWD
