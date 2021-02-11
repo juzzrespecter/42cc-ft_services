@@ -78,11 +78,11 @@ spec:
                       - protocol: TCP
                         containerPort: 8086
                   volumeMounts:
-                      - name: influxdb-volume
-                        mountPath: /var/lib/influxdb
                       - name: ssl-certs
                         mountPath: /usr/local/share/ca-certificates/
                         readOnly: true
+                      - name: influxdb-volume
+                        mountPath: /var/lib/influxdb
                   env:
                       - name: TELEGRAF_PASSWD
                         valueFrom:

@@ -5,9 +5,13 @@
 adduser -D usr_joking
 echo "guest:$(echo $USR_PASSWD)" | chpasswd
 
+update-ca-certificates
+
 # init telegraf
 telegraf --config /etc/telegraf/telegraf.conf &
 
 # set up server
 rc-service php-fpm7 start
 nginx -g 'daemon off;'
+
+sleep 1000 

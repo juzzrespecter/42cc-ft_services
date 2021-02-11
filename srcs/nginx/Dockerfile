@@ -6,6 +6,7 @@ RUN		apk update; apk add --no-cache nginx \
 										php7-fpm \
 										openrc \
 										openssh \
+										ca-certificates \
 										--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf;  \
 					openrc; \
 					touch /run/openrc/softlevel; \
@@ -14,7 +15,7 @@ RUN		apk update; apk add --no-cache nginx \
 					chown -R www:www /var/www; \
 					chmod -R 755 /var/www; \
 					mkdir -p /run/nginx; \
-					mkdir -p /etc/ssl; \
+					mkdir -p /etc/ssl/certs; \
 					rm -f /etc/nginx/conf.d/default.conf; \
 					chmod +x /nginx-setup.sh
 
