@@ -21,7 +21,7 @@ spec:
         ports:
                 - protocol: TCP
                   port: 5050
-                  targetPort: 80
+                  targetPort: 5050
         selector:
                 app: wordpress
 ---
@@ -81,7 +81,7 @@ spec:
                       imagePullPolicy: Never
                       ports:
                           - protocol: TCP
-                            containerPort: 80
+                            containerPort: 5050 
                       volumeMounts:
                           - name: www
                             mountPath: /var/www/localhost/htdocs

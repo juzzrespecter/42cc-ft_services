@@ -46,4 +46,3 @@ spec:
                 - name: telegraf-conf
                   configMap:
                         name: telegraf-conf
-                        ## this needs env vars
