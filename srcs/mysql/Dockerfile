@@ -2,7 +2,7 @@ FROM	alpine:3.12
 
 COPY	./srcs/mysql-config.sql /tmp
 
-# COPY	./srcs/wp_database.sql /tmp
+COPY	./srcs/wp_database.sql /tmp
 
 COPY	./srcs/create_tables.sql /tmp
 

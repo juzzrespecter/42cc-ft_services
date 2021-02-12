@@ -19,6 +19,8 @@ RUN		apk update; apk add --repository=https://dl-cdn.alpinelinux.org/alpine/edge
 
 COPY	./srcs/defaults.ini /grafana/conf/
 
+COPY	./srcs/influxdb.yaml /grafana/conf/provisioning/datasources
+
 WORKDIR	/grafana/bin/
 
 EXPOSE	3000
