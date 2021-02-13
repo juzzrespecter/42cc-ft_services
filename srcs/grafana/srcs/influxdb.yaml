@@ -8,24 +8,11 @@ datasources:
   - name: InfluxDB
     type: influxdb
     access: proxy
-    orgId: 1
-    uid: my_unique_uid
-    url: https://influxdb-svc.default.svc.cluster.local:8086
+    url: https://influxdb-svc:8086
     user: admin
     database: telegraf
-    basicAuth:
-    basicAuthUser:
-    withCredentials:
     isDefault:
-    jsonData:
-      graphiteVersion: '1.1'
-      tlsAuth: true
-      tlsAuthWithCACert: true
     secureJsonData:
-      tlsCACert: '...'
-      tlsClientCert: '...'
-      tlsClientKey: '...'
       password: passwd
-      basicAuthPassword:
     version: 1
     editable: false

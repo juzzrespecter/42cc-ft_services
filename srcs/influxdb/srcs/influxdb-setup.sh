@@ -1,22 +1,26 @@
 #!/bin/sh
 
+#############################################################
+#				 install db if not present					#
+#############################################################
+
 DIR="/var/lib/influxdb/"
-
-openssl req -x509 -nodes -newkey rsa:4096 \
-	-keyout /usr/local/share/ca-certificates/ssl-key.key \
-   	-out /usr/local/share/ca-certificates/ssl-cert.crt -days 365 \
-	-subj "/CN=influxdb-svc" \
-	-addext "subjectAltName = DNS:influxdb-svc";
-
-# install db if not present
-
 if [ ! "$(ls -A $DIR)" ]; then
-	/dbconf.sh &
+	influxd -config=/etc/influxdb.conf &
+   	sleep 1
+	echo "create user admin with password '$ADMIN_PASSWD' with all privileges" | influx -ssl -unsafeSsl;
+	echo "create database telegraf" | influx -ssl -unsafeSsl -username admin -password $ADMIN_PASSWD;
+	echo "create user telegraf with password '$TELEGRAF_PASSWD'" | influx -ssl -unsafeSsl -username admin -password $ADMIN_PASSWD;
+	echo "grant all on telegraf to telegraf" | influx -ssl -unsafeSsl -username admin -password $ADMIN_PASSWD;
+	pkill influxd
 fi
 
+#############################################################
+#		install root certificates, initialize telegraf		#
+#					& influx database						#
+#############################################################
+
 update-ca-certificates
-
-# init telegraf & db
-
 telegraf --config /etc/telegraf/telegraf.conf &
 influxd -config=/etc/influxdb.conf
+sleep 100000
