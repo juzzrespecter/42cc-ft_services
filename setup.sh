@@ -5,7 +5,7 @@ minikube start
 eval $(minikube docker-env)
 
 # --- build docker images
-dockerfiles=( "nginx" "phpmyadmin" "mysql" "grafana" "influxdb" "ftps-server" "wordpress" )
+dockerfiles=( "nginx" "phpmyadmin" "mysql" "grafana" "influxdb" "ftps-server" "wordpress" "telegraf")
 
 for name in ${dockerfiles[@]}; do
 	docker build ./srcs/$name/ -t $name:latest

@@ -38,3 +38,38 @@ data:
           collect_cpu_time = false
           report_active = false
         [[inputs.mem]]
+        [[inputs.docker]]
+          endpoint = "unix://var/run/docker.sock"
+        "$TEST"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: telegraf
+    labels:
+        app: telegraf
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: telegraf
+    template:
+        metadata:
+            labels:
+                app: telegraf
+        spec:
+            containers:
+              - name: telegraf
+                image: telegraf:latest
+                imagePullPolicy: Never
+                volumeMounts:
+                   - name: telegraf-conf
+                     mountPath: /etc/telegraf/
+                     readOnly: true
+                env:
+                   - name: TEST
+                     value: checa si parsea env vars a la hora de montar el config file
+            volumes:
+                   - name: telegraf-conf
+                     configMap:
+                        name: telegraf-conf
