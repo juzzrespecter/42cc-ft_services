@@ -1,17 +1,10 @@
 #!/bin/sh
 
-# set up ssh server and user for ssh access
-/etc/init.d/sshd start
-adduser -D usr_joking
-echo "guest:$(echo $USR_PASSWD)" | chpasswd
+/etc/init.d/sshd start							# setup ssh server	
+adduser -D usr_joking							# create ssh user with passwd
+echo "guest:$(echo $USR_PASSWD)" | chpasswd		#
 
-update-ca-certificates
+update-ca-certificates							# set up root certificates
 
-# init telegraf
-telegraf --config /etc/telegraf/telegraf.conf &
-
-# set up server
-rc-service php-fpm7 start
-nginx -g 'daemon off;'
-
-sleep 1000 
+rc-service php-fpm7 start						# initialize nginx server 
+nginx -g 'daemon off;'							#

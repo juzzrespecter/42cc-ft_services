@@ -8,7 +8,6 @@ RUN		apk update; apk add influxdb \
 						ca-certificates \
 						openrc \
 						openssl \
-						--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf; \
 					rm -rf /var/cache/apk/*; \
 					openrc; \
 					touch /run/openrc/softlevel; \
@@ -17,7 +16,6 @@ RUN		apk update; apk add influxdb \
 
 COPY	./srcs/influxdb.conf /etc/
 
-COPY	./srcs/telegraf.conf /etc/telegraf/
 
 EXPOSE	8086
 

@@ -1,4 +1,0 @@
-CREATE DATABASE IF NOT EXISTS wp_database;
-GRANT ALL PRIVILEGES ON wp_database.* TO 'wp_admin'@'%' IDENTIFIED BY 'wp_passwd';
-GRANT ALL PRIVILEGES ON *.* TO 'pma'@'%' IDENTIFIED BY 'pmapass';
-FLUSH PRIVILEGES;

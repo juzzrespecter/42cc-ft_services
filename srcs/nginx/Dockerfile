@@ -7,7 +7,6 @@ RUN		apk update; apk add --no-cache nginx \
 										openrc \
 										openssh \
 										ca-certificates \
-										--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf;  \
 					openrc; \
 					touch /run/openrc/softlevel; \
 					addgroup -S www; \

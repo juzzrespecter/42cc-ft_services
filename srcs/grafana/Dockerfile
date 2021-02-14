@@ -13,7 +13,6 @@ RUN		apk update; apk add wget \
 		mkdir -p /etc/ssl/certs/;
 
 RUN		apk update; apk add --repository=https://dl-cdn.alpinelinux.org/alpine/edge/main libc6-compat \
-							--repository=https://dl-cdn.alpinelinux.org/alpine/edge/community telegraf \
 		openrc; \
 		chmod +x grafana-setup.sh;
 

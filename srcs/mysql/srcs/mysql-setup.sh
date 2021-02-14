@@ -3,7 +3,6 @@
 if [ ! "$(ls -A "/var/lib/mysql/")" ]; then
 	/etc/init.d/mariadb setup
 	rc-service mariadb start
-	mysql -u root < /tmp/mysql-config.sql
 	echo "CREATE DATABASE IF NOT EXISTS wp_database;" | mysql -u root;
 	echo "GRANT ALL PRIVILEGES ON wp_database.* TO '$(echo $WP_ADMIN)'@'%' IDENTIFIED BY '$(echo $WP_PASSWD)';" | mysql -u root;
 	echo "GRANT ALL PRIVILEGES ON *.* TO '$(echo $PMA_USER)'@'%' IDENTIFIED BY '$(echo $PMA_PASSWD)';" | mysql -u root;
@@ -15,5 +14,5 @@ if [ ! "$(ls -A "/var/lib/mysql/")" ]; then
 	rc-service mariadb stop
 fi
 
-telegraf --config=/etc/telegraf/telegraf.conf &
+#rm -rf /tmp/*
 mysqld_safe

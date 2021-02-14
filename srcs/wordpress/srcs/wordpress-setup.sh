@@ -11,7 +11,5 @@ if [ ! "$(ls -A $WP_DIR)" ]; then
 	sed -i -e "s/db_password/$(echo $DB_PASSWORD)/" /var/www/localhost/htdocs/wp-config.php
 fi
 
-# init lighttp server && telegraf
 rc-service lighttpd start
-telegraf --config=/etc/telegraf/telegraf.conf &
 tail -f /var/log/lighttpd/access.log

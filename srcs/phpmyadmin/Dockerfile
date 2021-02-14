@@ -11,7 +11,6 @@ RUN	apk update; apk add nginx \
 				openssl \
 				wget \
 				openrc --no-cache \
-				--repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf; \
 			rm -rf /var/cache/apk/*; \
 			openrc; \
 			touch /run/openrc/softlevel; \
@@ -34,6 +33,6 @@ COPY	--chown=www:www ./srcs/nginx.conf /etc/nginx/
 
 COPY	--chown=www:www ./srcs/config.inc.php /var/www/
 
-COPY	./srcs/pma-setup.sh /
+COPY	./srcs/phpmyadmin-setup.sh /
 
-CMD	["/pma-setup.sh"]
+CMD	["/phpmyadmin-setup.sh"]

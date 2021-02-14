@@ -84,11 +84,6 @@ spec:
                       - name: influxdb-volume
                         mountPath: /var/lib/influxdb
                   env:
-                      - name: TELEGRAF_PASSWD
-                        valueFrom:
-                            secretKeyRef:
-                                name: telegraf-secrets
-                                key: telegraf-passwd
                       - name: ADMIN_PASSWD
                         valueFrom:
                             secretKeyRef:

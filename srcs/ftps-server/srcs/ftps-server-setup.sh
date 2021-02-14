@@ -12,5 +12,4 @@ chown $USR_FTPS:$USR_FTPS /home/$USR_FTPS/ftp/uploads
 echo $USR_FTPS | tee -a /etc/vsftpd/vsftpd.userlist
 
 rc-service vsftpd start
-telegraf --config=/etc/telegraf/telegraf.conf &
 tail -f /dev/null
