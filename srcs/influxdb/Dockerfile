@@ -7,7 +7,7 @@ COPY	./srcs/dbconf.sh /
 RUN		apk update; apk add influxdb \
 						ca-certificates \
 						openrc \
-						openssl \
+						openssl; \
 					rm -rf /var/cache/apk/*; \
 					openrc; \
 					touch /run/openrc/softlevel; \

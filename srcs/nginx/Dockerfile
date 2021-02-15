@@ -6,7 +6,8 @@ RUN		apk update; apk add --no-cache nginx \
 										php7-fpm \
 										openrc \
 										openssh \
-										ca-certificates \
+										ca-certificates; \
+					rm -rf /var/cache/apk/*; \
 					openrc; \
 					touch /run/openrc/softlevel; \
 					addgroup -S www; \

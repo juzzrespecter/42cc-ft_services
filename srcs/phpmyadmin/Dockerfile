@@ -10,7 +10,7 @@ RUN	apk update; apk add nginx \
 				php-mysqli \
 				openssl \
 				wget \
-				openrc --no-cache \
+				openrc --no-cache; \
 			rm -rf /var/cache/apk/*; \
 			openrc; \
 			touch /run/openrc/softlevel; \

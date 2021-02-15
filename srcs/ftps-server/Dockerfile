@@ -1,7 +1,7 @@
 FROM	alpine:3.12
 
 RUN		apk update; apk add vsftpd \
-							openrc \
+							openrc; \
 					rm -rf /var/cache/apk/*; \
 					openrc; \
 					touch /run/openrc/softlevel;

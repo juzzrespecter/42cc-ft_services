@@ -70,7 +70,7 @@ spec:
         selector:
             matchLabels:
                 app: wordpress
-        replicas: 1 
+        replicas: 3 
         template:
             metadata:
                 labels: 

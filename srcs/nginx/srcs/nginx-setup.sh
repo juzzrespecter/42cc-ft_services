@@ -1,8 +1,8 @@
 #!/bin/sh
 
 /etc/init.d/sshd start							# setup ssh server	
-adduser -D usr_joking							# create ssh user with passwd
-echo "guest:$(echo $USR_PASSWD)" | chpasswd		#
+adduser -D usr									# create ssh user with passwd
+echo "usr:$(echo $USR_PASSWD)" | chpasswd		#
 
 update-ca-certificates							# set up root certificates
 
