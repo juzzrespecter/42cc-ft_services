@@ -21,7 +21,7 @@ RUN		apk update; apk add --no-cache nginx \
 
 COPY	--chown=www:www ./srcs/nginx.conf /etc/nginx/
 
-COPY	./srcs/index.html /var/www/
+COPY	./srcs/index/ /var/www/
 
 EXPOSE	80/tcp
 

@@ -20,6 +20,8 @@ COPY	./srcs/defaults.ini /grafana/conf/
 
 COPY	./srcs/influxdb.yaml /grafana/conf/provisioning/datasources
 
+COPY	./srcs/db/ /grafana/conf/provisioning/dashboards
+
 WORKDIR	/grafana/bin/
 
 EXPOSE	3000

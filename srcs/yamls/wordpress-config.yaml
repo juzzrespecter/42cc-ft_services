@@ -104,7 +104,13 @@ spec:
                                 secretKeyRef:
                                     name: wp-credentials
                                     key: wp_passwd
-
+                      livenessProbe:
+                          exec:
+                              command:
+                                  - /bin/pidof
+                                  - lighttpd
+                          initialDelaySeconds: 5
+                          periodSeconds: 5
                 volumes:
                      - name: www
                        persistentVolumeClaim: 

@@ -23,6 +23,7 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+USE wp_database;
 --
 -- Table structure for table `wp_commentmeta`
 --
