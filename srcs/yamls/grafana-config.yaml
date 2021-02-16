@@ -38,12 +38,7 @@ spec:
                       - name: ssl-certs
                         mountPath: /usr/local/share/ca-certificates/
                         readOnly: true
-                      - name: telegraf-conf
-                        mountPath: /etc/telegraf/
             volumes:
                 - name: ssl-certs
                   secret:
                       secretName: ssl-cert
-                - name: telegraf-conf
-                  configMap:
-                        name: telegraf-conf
