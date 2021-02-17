@@ -4,7 +4,7 @@ metadata:
     name: mysql-credentials
 type: Opaque
 data:
-    mysql_root_passwd: cm9vdHBhc3N3ZAo=
+    mysql_root_passwd: cGFzc3dk 
 ---
 apiVersion: v1
 kind: Service
@@ -72,7 +72,7 @@ spec:
         spec:
             containers:
                 - name: mysql
-                  image: mysql:latest
+                  image: mysql:services
                   imagePullPolicy: Never
                   ports:
                       - protocol: TCP

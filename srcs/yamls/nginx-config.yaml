@@ -4,7 +4,7 @@ metadata:
     name: ssh-usr-pw
 type: Opaque
 data:
-    usr_passwd: dXNyX3B3Cg==
+    usr_passwd: cGFzc3dk
 ---
 apiVersion: v1
 kind: Service
@@ -47,7 +47,7 @@ spec:
                 spec:
                         containers:
                                 - name: nginx
-                                  image: nginx:latest
+                                  image: nginx:services
                                   imagePullPolicy: Never
                                   ports:
                                           - containerPort: 80

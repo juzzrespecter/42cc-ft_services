@@ -49,7 +49,7 @@ spec:
         spec:
             containers:
               - name: telegraf
-                image: telegraf:latest
+                image: telegraf:services
                 imagePullPolicy: Never
                 volumeMounts:
                    - name: telegraf-conf

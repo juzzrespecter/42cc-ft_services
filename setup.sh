@@ -8,7 +8,7 @@ eval $(minikube docker-env)
 dockerfiles=( "nginx" "phpmyadmin" "mysql" "grafana" "influxdb" "ftps-server" "wordpress" "telegraf")
 
 for name in ${dockerfiles[@]}; do
-	docker build ./srcs/$name/ -t $name:latest
+	docker build ./srcs/$name/ -t $name:services
 done
 
 # --- deploy services in the cluster

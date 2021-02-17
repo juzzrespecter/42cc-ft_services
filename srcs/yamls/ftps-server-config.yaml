@@ -4,7 +4,7 @@ metadata:
     name: usr-ftps-pw
 type: Opaque
 data:
-    usr_passwd: dXNyX3Bhc3N3ZAo=
+    usr_passwd: cGFzc3dk
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -101,7 +101,7 @@ spec:
         spec:
             containers:
                 - name: ftps-server
-                  image: ftps-server:latest
+                  image: ftps-server:services
                   imagePullPolicy: Never
                   ports:
                       - containerPort: 20

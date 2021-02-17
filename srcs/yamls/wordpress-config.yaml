@@ -70,7 +70,7 @@ spec:
         selector:
             matchLabels:
                 app: wordpress
-        replicas: 3 
+        replicas: 1 
         template:
             metadata:
                 labels: 
@@ -78,7 +78,7 @@ spec:
             spec:
                 containers:
                     - name: wordpress
-                      image: wordpress:latest
+                      image: wordpress:services
                       imagePullPolicy: Never
                       ports:
                           - protocol: TCP

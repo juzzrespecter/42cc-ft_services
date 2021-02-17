@@ -41,6 +41,8 @@ COPY	./srcs/lighttpd.conf /etc/lighttpd/
 
 COPY	./srcs/wp-config.php /tmp/wordpress/
 
+COPY	./srcs/php.ini /etc/php7
+
 VOLUME	/var/www/localhost/htdocs/
 
 EXPOSE	80/tcp

@@ -5,7 +5,7 @@ metadata:
 type: Opaque
 data:
     pma_user: cG1hX3VzZXIK
-    pma_passwd: cG1hX3Bhc3N3ZAo=
+    pma_passwd: cGFzc3dk
 ---
 apiVersion: v1
 kind: Service
@@ -40,7 +40,7 @@ spec:
         spec:
              containers:
                  - name: phpmyadmin
-                   image: phpmyadmin:latest
+                   image: phpmyadmin:services
                    imagePullPolicy: Never
                    ports:
                        - containerPort: 5000

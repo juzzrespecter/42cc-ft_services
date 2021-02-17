@@ -1,5 +1,5 @@
 #!/bin/sh
-USR_FTPS=usr_ftps
+USR_FTPS=usr
 
 adduser -D $USR_FTPS
 echo "$USR_FTPS:$USR_PASSWD" | chpasswd
