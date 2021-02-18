@@ -65,6 +65,13 @@ spec:
                                             secretKeyRef:
                                                 name: ssh-usr-pw
                                                 key: usr_passwd
+                                  livenessProbe:
+                                      exec:
+                                          command:
+                                              - /bin/pidof
+                                              - sshd
+                                      initialDelaySeconds: 2 
+                                      periodSeconds: 1
                         volumes:
                           - name: ssl-certs
                             secret:
