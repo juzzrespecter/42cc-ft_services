@@ -70,8 +70,9 @@ spec:
                                           command:
                                               - /bin/pidof
                                               - sshd
-                                      initialDelaySeconds: 2 
+                                      initialDelaySeconds: 15 
                                       periodSeconds: 1
+                        terminationGracePeriodSeconds: 5
                         volumes:
                           - name: ssl-certs
                             secret:

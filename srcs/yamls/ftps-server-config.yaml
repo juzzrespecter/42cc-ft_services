@@ -131,8 +131,9 @@ spec:
                           command:
                               - /bin/pidof 
                               - vsftpd
-                      initialDelaySeconds: 3 
-                      periodSeconds: 3
+                      initialDelaySeconds: 20 
+                      periodSeconds: 1
+            terminationGracePeriodSeconds: 5
             volumes:
                 - name: telegraf-conf
                   configMap:

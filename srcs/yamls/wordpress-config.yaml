@@ -109,8 +109,9 @@ spec:
                               command:
                                   - /bin/pidof
                                   - lighttpd
-                          initialDelaySeconds: 5
-                          periodSeconds: 5
+                          initialDelaySeconds: 20
+                          periodSeconds: 1
+                terminationGracePeriodSeconds: 5
                 volumes:
                      - name: www
                        persistentVolumeClaim: 
